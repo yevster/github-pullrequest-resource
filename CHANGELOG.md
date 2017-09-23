@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # v31 @ 11/7/2017
 
 * apply `depth` to the `git fetch` of the PR (thanks @bhcleek)
@@ -12,6 +13,9 @@
 * populate file with latest commit hash of PR branch
 
 # v28a @ 9/22/2017
+=======
+# v29a @ 9/22/2017
+>>>>>>> Updating changelog
 
 * Allow specification of title and description of GitHub check status.
 
