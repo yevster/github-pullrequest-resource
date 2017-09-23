@@ -1,4 +1,4 @@
-# v28a @ 9/22/2017
+# v29a @ 9/22/2017
 
 * Allow specification of title and description of GitHub check status.
 
