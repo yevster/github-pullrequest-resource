@@ -1,5 +1,7 @@
 # Github Pull Request Resource
 
+*Fork of [jtarchie/github-pullrequest-resource](https://github.com/jtarchie/github-pullrequest-resource), modified to allow additional customizability of build status title and description. Unless you specifically require these features, you should use the original.*
+
 Tracks Github pull requests made to a particular Github repo. In the spirit of [Travis
 CI](https://travis-ci.org/), a status of pending, success, or failure will be
 set on the pull request, which must be explicitly defined in your pipeline.
@@ -156,8 +158,12 @@ Set the status message for `concourse-ci` context on specified pull request.
   * [`on_success`](https://concourse.ci/on-success-step.html) and [`on_failure`](https://concourse.ci/on-failure-step.html) triggers may be useful for you when you wanted to reflect build result to the PR (see the example below).
 
 * `context`: *Optional.* The context on the specified pull request
-  (defaults to `status`). Any context will be prepended with `concourse-ci`, so
-  a context of `unit-tests` will appear as `concourse-ci/unit-tests` on Github.
+  (defaults to `status`). Any context will be prepended with the title (see below), so
+  a context of `unit-tests` with the default title will appear as `concourse-ci/unit-tests` on Github.
+  
+* `title` : *Optional.* The title of the build system to use with the context (defaults to `concourse-ci`). Any context will be appended to the title (see above), so a title of `my-build-system` with the default context will appear as `my-build-system/status` on Github.
+
+* `description` : *Optional.* A reader-friendly description of build results (defaults to `Concourse CI build success.` or `Concourse CI build failure.`). May be useful when detailed build results (such as warnings, errors, or names of failing tests) are available.
 
   This supports the [build environment](http://concourse.ci/implementing-resources.html#resource-metadata)
   variables provided by concourse. For example, `context: $BUILD_JOB_NAME` will set the context to the job name.
