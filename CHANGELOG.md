@@ -11,6 +11,10 @@
 
 * populate file with latest commit hash of PR branch
 
+# v28a @ 9/22/2017
+
+* Allow specification of title and description of GitHub check status.
+
 # v28 @ 9/5/2017
 
 * Output user of the PR to the meta data Thanks @drnic
