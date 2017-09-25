@@ -1,5 +1,11 @@
 .vagrant/
+.yardoc/
+doc/
 example/
-.bundle
 bin
+
+.bundle
 .secrets.yml
+.ruby-version
+
+
