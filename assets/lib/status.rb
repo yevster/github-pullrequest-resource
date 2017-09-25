@@ -18,7 +18,7 @@ class Status
       @state,
       context: "#{@title}/#{@context}",
       description: @description,
-      target_url: detail_url
+      target_url: @detail_url
     )
   end
 

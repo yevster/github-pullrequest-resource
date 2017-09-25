@@ -46,8 +46,8 @@ module Commands
 
       detail_url = "#{ENV['BUILD_DETAIL_URL']}"
       if (detail_url.nil? || detail_url.empty?)
-        atc_url = params.input.source.base_url || ENV['ATC_EXTERNAL_URL']
-        detail_url = ("#{@atc_url}/builds/#{ENV['BUILD_ID']}" if @atc_url)
+        atc_url = input.source.base_url || ENV['ATC_EXTERNAL_URL']
+        detail_url = ("#{atc_url}/builds/#{ENV['BUILD_ID']}" if atc_url)
       end
 
       contextes = params.context || ['status']
