@@ -175,6 +175,10 @@ Set the status message for `concourse-ci` context on specified pull request.
 
 * `merge.commit_msg`: *Optional.* Used with `merge` to set the commit message for the merge. Specify a file path to the merge commit message.
 
+#### Additional files consumed
+
+* `.build_url`: *Optional.* Contains URL offering detailed information about the build (defaults to the ATC url for the build).
+
 ## Example pipeline
 
 Please see this repo's [pipeline](https://github.com/jtarchie/pullrequest-resource/blob/master/.concourse.yml) for a perfect example.
