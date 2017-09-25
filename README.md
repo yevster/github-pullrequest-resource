@@ -21,7 +21,7 @@ resource_types:
 - name: pull-request
   type: docker-image
   source:
-    repository: jtarchie/pr
+    repository: yevster/github-pr
 ```
 
 ## Source Configuration
