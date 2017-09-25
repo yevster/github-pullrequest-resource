@@ -221,11 +221,11 @@ describe Commands::Out do
           end
         end
 
-        context 'with no custom detail_url and ATC_EXTERNAL_URL defined' do
-          it 'sets the target_url for status to detail_url' do
+        context 'with a custom build detail URL defined and with ATC_EXTERNAL_URL defined' do
+          it 'sets the target_url to the custom detail URL' do
+            File.write(File.join(dest_dir, '.build_url'), 'http://example.org/mybuild/666/detail')
             ENV['ATC_EXTERNAL_URL'] = 'http://atc-endpoint.com'
-            ENV['BUILD_DETAIL_URL'] = 'http://example.org/foo/bar/buildDetails?id=66666'
-            stub_status_post.with(body: hash_including('target_url' => 'http://example.org/foo/bar/buildDetails?id=66666'))
+            stub_status_post.with(body: hash_including('target_url' => 'http://example.org/mybuild/666/detail'))
 
             put('params' => { 'status' => 'success', 'path' => 'resource' }, 'source' => { 'repo' => 'jtarchie/test' })
           end
