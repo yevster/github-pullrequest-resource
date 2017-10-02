@@ -1,6 +1,6 @@
 # Github Pull Request Resource
 
-*Fork of [jtarchie/github-pullrequest-resource](https://github.com/jtarchie/github-pullrequest-resource), modified to allow additional customizability of build status title and description. Unless you specifically require these features, you should use the original.*
+*Fork of [jtarchie/github-pullrequest-resource](https://github.com/jtarchie/github-pullrequest-resource), modified to allow additional customizability of build status title, description, and details URL. Unless you specifically require these features, you should use the original.*
 
 Tracks Github pull requests made to a particular Github repo. In the spirit of [Travis
 CI](https://travis-ci.org/), a status of pending, success, or failure will be
