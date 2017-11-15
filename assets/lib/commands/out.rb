@@ -50,6 +50,11 @@ module Commands
         detail_url = ("#{atc_url}/builds/#{ENV['BUILD_ID']}" if atc_url)
       end
 
+      description=params.description
+      if ((description.nil? || description.empty?) && File.exist?('.status_description'))
+        description=File.read(File.join(path, '.status_description'))
+      end
+
       contextes = params.context || ['status']
       contextes = [contextes] unless contextes.is_a?(Array)
 
@@ -60,7 +65,7 @@ module Commands
           sha: sha,
           repo: repo,
           context: whitelist(context: context),
-          description: params.description,
+          description: description,
           title: params.title
         ).create!
       end

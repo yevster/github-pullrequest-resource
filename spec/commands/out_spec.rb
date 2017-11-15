@@ -37,6 +37,7 @@ describe Commands::Out do
 
     stub_json(:get, "https://api.github.com:443/repos/jtarchie/test/statuses/#{@sha}", [])
     ENV['BUILD_ID'] = '1234'
+    FileUtils.rm_f('.status_description')
   end
 
   def stub_json(method, uri, body)
@@ -238,11 +239,28 @@ describe Commands::Out do
             put('params' => { 'status' => 'success', 'path' => 'resource', 'context' => 'my-custom-context', 'title' => 'my-title', 'description' => 'My custom description.' }, 'source' => { 'repo' => 'jtarchie/test' })
           end
         end
+        
 
         it 'sets the a default context on the status' do
           stub_status_post.with(body: hash_including('context' => 'concourse-ci/status', 'description' => 'Concourse CI build success'))
 
           put('params' => { 'status' => 'success', 'path' => 'resource' }, 'source' => { 'repo' => 'jtarchie/test' })
+        end
+
+        context 'with a custom context for the status, custom title, and no custom description in params but with one in file, do' do
+          it 'supercedes file description with the parameter one' do
+            File.write(File.join(dest_dir, '.status_description'), 'Description 2')
+            stub_status_post.with(body: hash_including('context' => 'my-title/my-custom-context', 'description' => 'Description 2'))
+            put('params' => { 'status' => 'success', 'path' => 'resource', 'context' => 'my-custom-context', 'title' => 'my-title', 'description'=>'Description 2' }, 'source' => { 'repo' => 'jtarchie/test' })
+          end
+        end
+
+        context 'with a custom context for the status, custom title, and custom description in params, do' do
+          it 'supercedes file description with the parameter one' do
+            File.write(File.join(dest_dir, '.status_description'), 'Description 3')
+            stub_status_post.with(body: hash_including('context' => 'my-title/my-custom-context', 'description' => 'My custom description.'))
+            put('params' => { 'status' => 'success', 'path' => 'resource', 'context' => 'my-custom-context', 'title' => 'my-title', 'description' => 'My custom description.' }, 'source' => { 'repo' => 'jtarchie/test' })
+          end
         end
 
         context 'with a custom context for the status' do
