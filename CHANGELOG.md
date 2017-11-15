@@ -1,3 +1,7 @@
+# v31a @11/15/2017
+* When description is omitted from out params and a .status_description file is present, 
+the contents of that file will be used in the PR check description.
+
 # v31 @ 11/7/2017
 
 * apply `depth` to the `git fetch` of the PR (thanks @bhcleek)
