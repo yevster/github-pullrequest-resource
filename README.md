@@ -178,6 +178,8 @@ Set the status message for `concourse-ci` context on specified pull request.
 
 * `.build_url`: *Optional.* Contains URL offering detailed information about the build (defaults to the ATC url for the build).
 
+* `.status_description`: *Optional.* Contains text of status description to be used if one is not provided in the `description` parameter above.
+
 ## Example pipeline
 
 Please see this repo's [pipeline](https://github.com/jtarchie/pullrequest-resource/blob/master/.concourse.yml) for a perfect example.

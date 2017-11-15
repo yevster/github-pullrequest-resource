@@ -249,9 +249,9 @@ describe Commands::Out do
 
         context 'with a custom context for the status, custom title, and no custom description in params but with one in file, do' do
           it 'supercedes file description with the parameter one' do
-            File.write(File.join(dest_dir, '.status_description'), 'Description 2')
+            File.write(File.join(dest_dir, '.status_description'), "Description 2\n")
             stub_status_post.with(body: hash_including('context' => 'my-title/my-custom-context', 'description' => 'Description 2'))
-            put('params' => { 'status' => 'success', 'path' => 'resource', 'context' => 'my-custom-context', 'title' => 'my-title', 'description'=>'Description 2' }, 'source' => { 'repo' => 'jtarchie/test' })
+            put('params' => { 'status' => 'success', 'path' => 'resource', 'context' => 'my-custom-context', 'title' => 'my-title'}, 'source' => { 'repo' => 'jtarchie/test' })
           end
         end
 

@@ -50,9 +50,10 @@ module Commands
         detail_url = ("#{atc_url}/builds/#{ENV['BUILD_ID']}" if atc_url)
       end
 
-      description=params.description
-      if ((description.nil? || description.empty?) && File.exist?('.status_description'))
-        description=File.read(File.join(path, '.status_description'))
+      description=params['description']
+      descriptionFile=File.join(path, '.status_description')
+      if ((description.nil? || description.empty?) && File.exist?(descriptionFile))
+        description=IO.read(descriptionFile).chomp
       end
 
       contextes = params.context || ['status']
