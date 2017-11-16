@@ -44,8 +44,10 @@ module Commands
         version = { 'pr' => id, 'ref' => sha }
       end
 
-      detail_url = Dir.chdir(path) {`cat .build_url 2>/dev/null`.chomp }
-      if (detail_url.nil? || detail_url.empty?)
+      detailUrlFile = File.join(path, ".build_url");
+      if (File.exist?(detailUrlFile))
+        detail_url = Dir.chdir(path) {`cat .build_url 2>/dev/null`.chomp }
+      elsif (detail_url.nil? || detail_url.empty?)
         atc_url = input.source.base_url || ENV['ATC_EXTERNAL_URL']
         detail_url = ("#{atc_url}/builds/#{ENV['BUILD_ID']}" if atc_url)
       end
